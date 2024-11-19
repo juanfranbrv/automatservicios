@@ -4,8 +4,15 @@ from openai import OpenAI
 import pandas as pd
 from io import BytesIO
 
+key = st.secrets["OPENAI_API_KEY"]
+
+# Verificar si la clave API está presente
+if not key:
+    st.error("API Key no encontrada. Asegúrate de tener una variable 'OPENAI_API_KEY' en tu archivo .env")
+    st.stop()
+
 # Configura tu API key directamente
-openai_client = OpenAI(api_key="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")
+openai_client = OpenAI(api_key=key)
 
 # Configuración de la página
 st.set_page_config(page_title="Extracción de Facturas con GPT", layout="wide")
